@@ -134,10 +134,9 @@ class PreviewImageView: AppCompatImageView {
         initBorderPath(w, h)
     }
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         try {
-            canvas?.saveLayer(mSrcRectF, null)
+            canvas.saveLayer(mSrcRectF, null)
             // 缩小画布
 //            val sx = 1.0f * (width - borderWidth) / width
 //            val sy  = 1.0f * (height - borderWidth) / height

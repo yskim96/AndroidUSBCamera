@@ -68,7 +68,8 @@ dependencies {
 
     // For debug online
     implementation project(':libausbc')
-
+    androidTestImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.2'
     // demo
 //    implementation 'com.github.jiangdongguo.AndroidUSBCamera:libausbc:3.3.3'
 }
