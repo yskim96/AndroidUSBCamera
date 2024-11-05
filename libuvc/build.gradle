@@ -59,6 +59,7 @@ String getNdkBuildPath() {
 	} else {
 		ndkBuildPath = ndkBuildingDir + '/ndk-build'
 	}
+	println("ndkBuildPath::$ndkBuildPath")
 	return ndkBuildPath
 }
 
