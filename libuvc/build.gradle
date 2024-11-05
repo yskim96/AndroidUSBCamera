@@ -67,21 +67,12 @@ task ndkBuild(type: Exec, description: 'Compile JNI source via NDK') {
 	def ndkBuildPath = getNdkBuildPath();
 	commandLine ndkBuildPath, '-j8', '-C', file('src/main').absolutePath
 }
-task ndkClean(type: Exec) {
-	description = 'Cleans NDK build artifacts'
-	group = 'build'
 
-	def ndkPath = "$android.ndkDirectory/ndk-build"
-	def jniDir = file("$projectDir/src/main/jni")
-
-	commandLine ndkPath, 'clean'
-	workingDir jniDir
+task ndkClean(type: Exec, description: 'clean JNI libraries') {
+	println('executing ndkBuild clean')
+	def ndkBuildPath = getNdkBuildPath();
+	commandLine ndkBuildPath, 'clean', '-C', file('src/main').absolutePath
 }
-//task ndkClean(type: Exec, description: 'clean JNI libraries') {
-//	println('executing ndkBuild clean')
-//	def ndkBuildPath = getNdkBuildPath();
-//	commandLine ndkBuildPath, 'clean', '-C', file('src/main').absolutePath
-//}
 
 clean.dependsOn 'ndkClean'
 
