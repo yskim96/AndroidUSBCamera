@@ -7,6 +7,8 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
+import androidx.test.platform.app.InstrumentationRegistry;
+
 /**
  * Instrumentation test, which will execute on an Android device.
  *
@@ -17,8 +19,8 @@ public class ExampleInstrumentedTest {
     @Test
     public void useAppContext() throws Exception {
         // Context of the app under test.
-       // Context appContext = InstrumentationRegistry.getTargetContext();
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-     //   assertEquals("com.jiangdg.androidusbcamera", appContext.getPackageName());
+        assertEquals("com.jiangdg.androidusbcamera", appContext.getPackageName());
     }
 }
