@@ -1,4 +1,6 @@
-apply plugin: 'com.android.library'
+plugins {
+	id 'com.android.library'
+}
 
 import org.apache.tools.ant.taskdefs.condition.Os
 
@@ -14,14 +16,17 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
 		targetSdkVersion rootProject.ext.versionTarget
-//		externalNativeBuild {
-//			cmake {
-//				cppFlags ""
-//			}
-//			ndk{
-//				abiFilters 'armeabi-v7a','arm64-v8a', "x86", "x86_64"
-//			}
-//		}
+		versionCode rootProject.ext.versionCode
+		versionName rootProject.ext.versionNameString
+
+		externalNativeBuild {
+			cmake {
+				cppFlags ""
+			}
+			ndk{
+				abiFilters 'armeabi-v7a','arm64-v8a', "x86", "x86_64"
+			}
+		}
     }
 
 	lintOptions {
