@@ -14,15 +14,23 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-        externalNativeBuild {
-            cmake {
-                cppFlags ""
-            }
-            ndk{
-                abiFilters 'armeabi-v7a','arm64-v8a', "x86", "x86_64"
-            }
-        }
+//        externalNativeBuild {
+//            cmake {
+//                cppFlags ""
+//            }
+//            ndk{
+//                abiFilters 'armeabi-v7a','arm64-v8a', "x86", "x86_64"
+//            }
+//        }
     }
+    // Specify NDK version
+   // ndkVersion "21.4.7075529"
+
+//    externalNativeBuild {
+//        cmake {
+//            path "CMakeLists.txt"
+//        }
+//    }
 
     buildTypes {
         release {
@@ -30,12 +38,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    externalNativeBuild {
-        cmake {
-            path "src/main/cpp/CMakeLists.txt"
-            version "3.10.2"
-        }
-    }
+//    externalNativeBuild {
+//        cmake {
+//            path "src/main/cpp/CMakeLists.txt"
+//            version "3.10.2"
+//        }
+//    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -43,7 +51,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    ndkVersion '21.4.7075529'
+  ///  ndkVersion '21.4.7075529'
 }
 
 dependencies {
