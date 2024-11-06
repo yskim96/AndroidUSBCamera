@@ -1,9 +1,8 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'maven-publish'
 import org.apache.tools.ant.taskdefs.condition.Os
 
 android {
-	namespace = "com.libuvc"
 	compileSdk rootProject.ext.versionCompiler
 
 
@@ -42,41 +41,49 @@ android {
     }
 //	ndkVersion '24.1.7075529'
 }
-
-tasks.withType(JavaCompile) {
-	compileTask -> compileTask.dependsOn ndkBuild
-}
-
-String getNdkBuildPath() {
-	def ndkBuildingDir = System.getenv("NDK_HOME")
-	if (ndkBuildingDir==null || ndkBuildingDir.isEmpty()) {
-		Properties properties = new Properties()
-		properties.load(project.rootProject.file('local.properties').newDataInputStream())
-		ndkBuildingDir = properties.getProperty("ndk.dir")
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			groupId = 'com.jiangdg.ausbc'
+			artifactId = 'libuvc'
+			version = '3.6.1'
+		}
 	}
-	def ndkBuildPath = ndkBuildingDir
-	if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-		ndkBuildPath = ndkBuildingDir + '/ndk-build.cmd'
-	} else {
-		ndkBuildPath = ndkBuildingDir + '/ndk-build'
-	}
-	println("ndkBuildPath::$ndkBuildPath")
-	return ndkBuildPath
 }
+//tasks.withType(JavaCompile) {
+//	compileTask -> compileTask.dependsOn ndkBuild
+//}
 
-task ndkBuild(type: Exec, description: 'Compile JNI source via NDK') {
-	println('executing ndkBuild')
-	def ndkBuildPath = getNdkBuildPath();
-	commandLine ndkBuildPath, '-j8', '-C', file('src/main').absolutePath
-}
-
-task ndkClean(type: Exec, description: 'clean JNI libraries') {
-	println('executing ndkBuild clean')
-	def ndkBuildPath = getNdkBuildPath();
-	commandLine ndkBuildPath, 'clean', '-C', file('src/main').absolutePath
-}
-
-clean.dependsOn 'ndkClean'
+//String getNdkBuildPath() {
+//	def ndkBuildingDir = System.getenv("NDK_HOME")
+//	if (ndkBuildingDir==null || ndkBuildingDir.isEmpty()) {
+//		Properties properties = new Properties()
+//		properties.load(project.rootProject.file('local.properties').newDataInputStream())
+//		ndkBuildingDir = properties.getProperty("ndk.dir")
+//	}
+//	def ndkBuildPath = ndkBuildingDir
+//	if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+//		ndkBuildPath = ndkBuildingDir + '/ndk-build.cmd'
+//	} else {
+//		ndkBuildPath = ndkBuildingDir + '/ndk-build'
+//	}
+//	println("ndkBuildPath::$ndkBuildPath")
+//	return ndkBuildPath
+//}
+//
+//task ndkBuild(type: Exec, description: 'Compile JNI source via NDK') {
+//	println('executing ndkBuild')
+//	def ndkBuildPath = getNdkBuildPath();
+//	commandLine ndkBuildPath, '-j8', '-C', file('src/main').absolutePath
+//}
+//
+//task ndkClean(type: Exec, description: 'clean JNI libraries') {
+//	println('executing ndkBuild clean')
+//	def ndkBuildPath = getNdkBuildPath();
+//	commandLine ndkBuildPath, 'clean', '-C', file('src/main').absolutePath
+//}
+//
+//clean.dependsOn 'ndkClean'
 
 dependencies {
     implementation fileTree(dir: new File(buildDir, 'libs'), include: '*.jar')
