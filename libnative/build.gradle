@@ -67,9 +67,9 @@ dependencies {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            groupId = 'com.jiangdg.natives'
+            groupId = 'com.github.asv-ericlara'
             artifactId = 'libnative'
-            version = '3.6.2'
+            version = '3.6.3'
         }
     }
 }

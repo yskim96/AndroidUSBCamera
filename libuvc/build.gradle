@@ -44,9 +44,9 @@ android {
 publishing {
 	publications {
 		mavenJava(MavenPublication) {
-			groupId = 'com.jiangdg'
+			groupId = 'com.github.asv-ericlara'
 			artifactId = 'libuvc'
-			version = '3.6.2'
+			version = '3.6.3'
 		}
 	}
 }

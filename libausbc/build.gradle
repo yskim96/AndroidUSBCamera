@@ -45,9 +45,9 @@ dependencies {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            groupId = 'com.jiangdg.ausbc'
+            groupId = 'com.github.asv-ericlara'
             artifactId = 'libausbc'
-            version = '3.6.2'
+            version = '3.6.3'
         }
     }
 }
