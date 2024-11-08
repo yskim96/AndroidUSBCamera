@@ -44,9 +44,9 @@ android {
 publishing {
 	publications {
 		mavenJava(MavenPublication) {
-			groupId = 'com.jiangdg.ausbc'
+			groupId = 'com.jiangdg'
 			artifactId = 'libuvc'
-			version = '3.6.1'
+			version = '3.6.2'
 		}
 	}
 }
