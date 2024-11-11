@@ -1,10 +1,11 @@
-apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
+plugins {
+	id 'com.android.library'
+	id 'maven-publish'
+}
 import org.apache.tools.ant.taskdefs.condition.Os
 
 android {
 	compileSdk rootProject.ext.versionCompiler
-
 
 	compileOptions {
 		sourceCompatibility rootProject.ext.javaSourceCompatibility
@@ -12,8 +13,9 @@ android {
 	}
 
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-		targetSdkVersion rootProject.ext.versionTarget
+        minSdk rootProject.ext.minSdkVersion
+		targetSdk rootProject.ext.versionTarget
+
 		externalNativeBuild {
 			cmake {
 				cppFlags ""
@@ -41,12 +43,17 @@ android {
     }
 //	ndkVersion '24.1.7075529'
 }
+
 publishing {
 	publications {
-		mavenJava(MavenPublication) {
+		release(MavenPublication) {
 			groupId = 'com.github.asv-ericlara'
 			artifactId = 'libuvc'
-			version = '3.6.4'
+			version = '3.6.5'
+
+			afterEvaluate {
+				from components.release
+			}
 		}
 	}
 }
